@@ -1,0 +1,16 @@
+version: "3.9"  # optional since v1.27.0
+services:
+  fastapi:  
+    image: daxter2000/clase_devops01:api_fastapi_v2
+    build: ./docker_fastapi
+    ports:
+      - "80:80"
+    depends_on:
+      - mysql
+  mysql:
+    image: daxter2000/clase_devops01:myimagemysqlv1
+    build: ./docker_mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    ports:
+      - "3306:3306"
